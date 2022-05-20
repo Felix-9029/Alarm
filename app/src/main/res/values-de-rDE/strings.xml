@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wecker</string>
+    <string name="AlarmMainLabel">Wecker</string>
+    <string name="AlarmSettingsLabel">Einstellungen</string>
+    <string name="darkmode">Dunkelmodus</string>
+    <string name="fontsize">Schriftgröße</string>
+    <string name="design_header">Aussehen</string>
+    <string name="cancel">Alarm abbrechen</string>
+    <string name="setAlarm">Wecker einstellen</string>
+    <string name="snoozeTimeString">Schlummer-Zeit:</string>
+</resources>
