@@ -27,13 +27,13 @@
         android:overScrollMode="never"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
+        <Button
+            android:id="@+id/buttonAlarmTime"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
             android:layout_marginBottom="50dp"
-            android:text="TextView"
+            android:text="12:00"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/textViewSnoozeTimeString"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
             app:layout_constraintBottom_toTopOf="@+id/textViewSnoozeTime"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonAlarmTime" />
 
         <TextView
             android:id="@+id/textViewSnoozeTime"

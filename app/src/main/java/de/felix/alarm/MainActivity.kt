@@ -1,5 +1,6 @@
 package de.felix.alarm
 
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -11,9 +12,17 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
 import de.felix.alarm.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        lateinit var mainActivity: MainActivity
+            private set
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -26,6 +35,20 @@ class MainActivity : AppCompatActivity() {
 
         applySharedPreferenceSettings()
 
+        buttonAlarmTime.setOnClickListener {
+            val cal = Calendar.getInstance()
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+                cal.set(Calendar.HOUR_OF_DAY, hour)
+                cal.set(Calendar.MINUTE, minute)
+                buttonAlarmTime.text = SimpleDateFormat("HH:mm").format(cal.time)
+            }
+            TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+        }
+
+        buttonSetAlarm.setOnClickListener {
+
+        }
+
         buttonCancelAlarm.setOnClickListener {
 
         }
@@ -34,18 +57,12 @@ class MainActivity : AppCompatActivity() {
         seekBarSnoozeTime.max = 14
         seekBarSnoozeTime.setOnSeekBarChangeListener(object: OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, currentValue: Int, fromUser: Boolean) {
-                var currentValueInc = currentValue
-                currentValueInc++
-                val snoozeString = "$currentValueInc min"
-                textViewSnoozeTime.text = snoozeString
+                setSnoozeTimeString(currentValue)
             }
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
-        var currentValueInc = seekBarSnoozeTime.progress
-        currentValueInc++
-        val snoozeString = "$currentValueInc min"
-        textViewSnoozeTime.text = snoozeString
+        setSnoozeTimeString(seekBarSnoozeTime.progress)
     }
 
     override fun onResume() {
@@ -77,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val textsizeString = sharedPreferences?.getString("fontsize", "19")
         if (textsizeString != null) {
-            textView.textSize = textsizeString.toFloat()
+            buttonAlarmTime.textSize = textsizeString.toFloat()
             textViewSnoozeTimeString.textSize = textsizeString.toFloat()
             textViewSnoozeTime.textSize = textsizeString.toFloat()
             buttonCancelAlarm.textSize = textsizeString.toFloat()
@@ -93,5 +110,16 @@ class MainActivity : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
+    }
+
+    private fun setSnoozeTimeString(time: Int) {
+        val currentValueInc = time + 1
+        val snoozeString = "$currentValueInc min"
+        textViewSnoozeTime.text = snoozeString
+    }
+
+    fun setAlarmTime(hour: Int, min: Int) {
+        val time = "$hour:$min"
+        buttonAlarmTime.text = time
     }
 }
