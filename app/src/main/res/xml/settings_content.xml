@@ -9,7 +9,6 @@
             app:key="fontsize"
             app:title="@string/fontsize"
             app:useSimpleSummaryProvider="true"
-            android:defaultValue="19"
-            android:inputType="number" />
+            android:defaultValue="19" />
     </PreferenceCategory>
 </PreferenceScreen>

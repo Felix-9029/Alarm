@@ -9,4 +9,8 @@
     <string name="cancel">Alarm abbrechen</string>
     <string name="setAlarm">Wecker einstellen</string>
     <string name="snoozeTimeString">Schlummer-Zeit:</string>
+    <string name="snooze">Schlummern</string>
+    <string name="AlarmNotificationChannelName">Wecker</string>
+    <string name="AlarmNotificationTitle">Aufwachen!</string>
+    <string name="AlarmNotificationMessage">Es ist Zeit aufzustehen!</string>
 </resources>

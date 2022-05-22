@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.felix.alarm">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Alarm">
+
+        <activity
+            android:name=".SnoozeActivity"
+            android:exported="true" />
         <activity
             android:name=".SettingsActivity"
             android:exported="true"
@@ -21,9 +28,20 @@
             android:theme="@style/Theme.Alarm.NoActionBar">
             <intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name=".AlarmBroadcastReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="de.felix.alarmmanager" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

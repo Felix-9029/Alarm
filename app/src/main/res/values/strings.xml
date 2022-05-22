@@ -8,4 +8,9 @@
     <string name="cancel">Cancel alarm</string>
     <string name="setAlarm">Set alarm</string>
     <string name="snoozeTimeString">Snooze-Time:</string>
+    <string name="snooze">Snooze</string>
+    <string name="AlarmNotificationTitle">Wake up!</string>
+    <string name="AlarmNotificationMessage">It\'s time to get up!</string>
+    <string name="AlarmNotificationChannelID" translatable="false">alarm_channel</string>
+    <string name="AlarmNotificationChannelName" translatable="true">Alarm</string>
 </resources>
